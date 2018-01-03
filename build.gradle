@@ -1,0 +1,46 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+// Global settings
+subprojects {
+    repositories {
+        flatDir{
+            dirs '../ScanditSDK'
+        }
+    }
+    apply plugin: 'com.android.application'
+    ext.global_compileSdkVersion = 25
+    ext.global_buildToolsVersion = "26.0.0"
+
+    ext.global_minSdkVersion = 14
+    ext.global_targetSdkVersion = 25
+
+    dependencies {
+        compile(name:'ScanditBarcodeScanner', ext:'aar')
+
+    }
+}
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
